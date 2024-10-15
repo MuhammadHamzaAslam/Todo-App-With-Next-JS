@@ -4,31 +4,33 @@ import React, { useRef } from "react";
 
 const TodoForm = () => {
   const formRef = useRef(null);
+
   const handleAddTodo = async (formData) => {
     const obj = { task: formData.get("task") };
     if (obj.task) {
       await addTodo(obj);
       formRef?.current?.reset();
     } else {
-      alert("Plz add task");
+      alert("Please add a task");
     }
   };
+
   return (
     <form
       action={handleAddTodo}
       ref={formRef}
-      className="flex justify-center items-center flex-row gap-3 my-6"
+      className="flex justify-center items-center flex-row gap-3 my-8"
     >
       <input
         type="text"
         name="task"
-        placeholder="Enter Your Todo"
-        className="my-3 border-4 outline-none focus:border-blue-400 border-black py-4 px-4 rounded-xl w-1/3"
+        placeholder="Enter your Todo"
+        className="my-3 border-2 outline-none focus:border-blue-500 border-gray-300 py-3 px-4 rounded-lg w-full max-w-md shadow-sm transition-all duration-200"
       />
       <input
         type="submit"
-        className="bg-blue-400 py-4 px-8 rounded-xl text-xl box-border"
-        value={"Add Todo"}
+        className="bg-blue-500 text-white py-3 px-6 rounded-lg text-lg font-semibold cursor-pointer hover:bg-blue-600 transition-all duration-200"
+        value="Add Todo"
       />
     </form>
   );

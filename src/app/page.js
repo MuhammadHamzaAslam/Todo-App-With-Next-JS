@@ -9,7 +9,6 @@ export default async function Home() {
         Todo App With Next JS{" "}
       </h1>
       <TodoForm />
-
       <AllTodos />
     </div>
   );

@@ -1,3 +1,5 @@
+"use client";
+import { updateTodo, deleteTodo } from "@/app/actions/todo";
 import React from "react";
 
 async function AllTodos() {
@@ -6,21 +8,53 @@ async function AllTodos() {
   });
   todosApi = await todosApi.json();
 
+  const onComplete = async (todo) => {
+    let obj = { ...todo };
+    obj.isCompleted = !obj.isCompleted;
+    await updateTodo(obj);
+  };
+
+  const editTheTodo = async () => {
+    alert("Edit functionality will be added soon!");
+  };
+
+  async function deleteTheTodo(id) {
+    await deleteTodo({ id });
+  }
+
   return (
-    <div>
-      <div className="flex justify-center flex-col items-center gap-3">
-        {todosApi.map((data) => (
-          <div
-            className="flex justify-between items-center p-3 border border-black w-1/3 "
-            key={data.id}
+    <div className="flex flex-col items-center mt-8 space-y-4">
+      {todosApi.map((data) => (
+        <div
+          className={`flex justify-between items-center p-4 w-full max-w-lg border border-gray-300 shadow-lg rounded-lg bg-white ${
+            data.isCompleted ? "opacity-50 line-through" : ""
+          } transition-all duration-300`}
+          key={data.id}
+        >
+          <h1
+            onClick={() => onComplete(data)}
+            className={`cursor-pointer text-lg ${
+              data.isCompleted ? "text-gray-500" : "text-gray-800"
+            }`}
           >
-            <h1>{data.task}</h1>
-            <div className="bg-red-400 capitalize rounded-xl text-white px-8 py-3 box-border">
-              del
-            </div>
+            {data.task}
+          </h1>
+          <div className="flex gap-3">
+            <button
+              onClick={() => deleteTheTodo(data.id)}
+              className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-200"
+            >
+              Delete
+            </button>
+            <button
+              onClick={() => editTheTodo(data.id)}
+              className="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-all duration-200"
+            >
+              Edit
+            </button>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }
