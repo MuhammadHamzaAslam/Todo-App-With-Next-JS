@@ -1,3 +1,7 @@
+
+import { connectDB } from "@/app/lib/connectDB";
+import { TodoModal } from "@/app/lib/TodoModal";
+
 const Todos = [
   {
     task: "Task 1",
@@ -7,6 +11,9 @@ const Todos = [
 ];
 
 export async function GET() {
+  await connectDB()
+  const TodosByMongoDB = await TodoModal.find()
+  
   return Response.json(Todos);
 }
 
