@@ -41,7 +41,7 @@ async function AllTodos() {
           </h1>
           <div className="flex gap-3">
             <button
-              onClick={() => deleteTheTodo(data.id)}
+              onClick={() => deleteTheTodo(data._id)}
               className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-200"
             >
               Delete
