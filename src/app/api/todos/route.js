@@ -4,7 +4,6 @@ import { TodoModal } from "@/app/lib/TodoModal";
 export async function GET() {
   await connectDB();
   const TodosByMongoDB = await TodoModal.find();
-
   return Response.json(TodosByMongoDB);
 }
 

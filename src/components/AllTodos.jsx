@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { updateTodo, deleteTodo } from "@/app/actions/todo";
 import React from "react";
 
