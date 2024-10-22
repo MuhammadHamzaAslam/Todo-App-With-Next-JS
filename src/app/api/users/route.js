@@ -4,7 +4,7 @@ import { UserModal } from "@/app/lib/UserModal";
 export async function GET() {
   await connectDB();
   const allUser = await UserModal.find();
-  return Response.json(allUser)
+  return Response.json(allUser);
 }
 
 export async function POST(request) {
@@ -20,3 +20,5 @@ export async function POST(request) {
     console.log(error);
   }
 }
+
+

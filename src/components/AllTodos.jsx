@@ -7,6 +7,10 @@ async function AllTodos() {
     cache: "no-cache",
   });
   todosApi = await todosApi.json();
+  console.log('todosApi =>' , todosApi);
+  
+  
+  
 
   const onComplete = async (todo) => {
     let obj = { ...todo };

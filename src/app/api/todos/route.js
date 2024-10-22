@@ -27,7 +27,7 @@ export async function DELETE(request) {
 }
 
 export async function PUT(request) {
-  let obj = await request.json();
+  let response = await request.json();
 }
 // let userTodoInd = Todos.findIndex((todo) => todo.id == obj.id);
 // Todos[userTodoInd] = obj;
