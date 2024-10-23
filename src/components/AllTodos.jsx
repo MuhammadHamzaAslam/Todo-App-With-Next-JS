@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { updateTodo, deleteTodo } from "@/app/actions/todo";
 import React from "react";
 
@@ -7,10 +7,7 @@ async function AllTodos() {
     cache: "no-cache",
   });
   todosApi = await todosApi.json();
-  console.log('todosApi =>' , todosApi);
-  
-  
-  
+  console.log("todosApi =>", todosApi);
 
   const onComplete = async (todo) => {
     let obj = { ...todo };

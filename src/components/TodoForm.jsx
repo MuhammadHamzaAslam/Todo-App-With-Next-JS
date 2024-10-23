@@ -8,16 +8,20 @@ const TodoForm = async () => {
   const handleAddTodo = async (formData) => {
     const obj = { task: formData.get("task") };
     if (obj.task) {
-      await addTodo(obj);
+      await addTodo({
+        task: obj.task,
+        isCompleted: false,
+        user: formData.get("users"),
+      });
       formRef?.current?.reset();
     } else {
       alert("Please add a task");
     }
   };
 
-  let todosUser = await fetch("http://localhost:3000/api/users")
-  todosUser = await todosUser.json()
-  console.log('todosUser =>' , todosUser);
+  let todosUser = await fetch("http://localhost:3000/api/users");
+  todosUser = await todosUser.json();
+  console.log("todosUser =>", todosUser);
 
   return (
     <form
@@ -31,12 +35,10 @@ const TodoForm = async () => {
         placeholder="Enter your Todo"
         className="my-3 border-2 outline-none focus:border-blue-500 border-gray-300 py-3 px-4 rounded-lg w-full max-w-md shadow-sm transition-all duration-200"
       />
-      <select name="users" >
-        {
-          todosUser?.map((data)=>(
-            <option value={data._id}> {data.fullName} </option>
-          ))
-        }
+      <select name="users">
+        {todosUser?.map((data) => (
+          <option value={data._id}> {data.fullName} </option>
+        ))}
       </select>
       <input
         type="submit"
